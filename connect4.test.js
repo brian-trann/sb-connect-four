@@ -37,16 +37,31 @@ describe('Board Related Tests', function(){
         //teardown logic
     })
 })
-// describe('check for win logic', function(){
+describe('Piece testing', function(){
 
+    beforeEach(function(){
+        //initialization logic
+        placeInTable(5,0)
+        placeInTable(4,0)
+        placeInTable(3,0)
+        placeInTable(2,0)
 
-//     beforeEach(function(){
-//         //initialization logic
-//     })
-//     it('', function(){
+    })
+    it('should have the correct ID, given Y and X values on placeInTable()', function(){
         
-//     })
-//     afterEach(function(){
-//         //teardown logic
-//     })
-// })
+        expect(document.getElementById('5-0').id).toEqual("5-0") 
+        expect(document.getElementById('4-0').id).toEqual("4-0")
+        expect(document.getElementById('3-0').id).toEqual("3-0")
+        expect(document.getElementById('2-0').id).toEqual("2-0")
+        expect(document.getElementById('5-0').id).not.toEqual("0-5")
+        
+    })
+
+    afterEach(function(){
+        //teardown logic
+        const allPieces = document.querySelectorAll('#board div')
+        for (let piece of allPieces){
+            piece.remove()
+        }
+    })
+})
