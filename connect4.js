@@ -62,10 +62,7 @@ function makeHtmlBoard() {
 /** findSpotForCol: given column x, return top empty y (null if filled) */
 
 function findSpotForCol(x) {
-  // console.log(`columnX ${x}`)
-  // This took me a couple of tries to get it to be dynamic
-  // also counting down is harder for me
-  //for some reason, it is more unnatural for me haha
+
   for(let y = HEIGHT-1; y>=0 ; y--){
     if (!board[y][x]){
       return y
@@ -78,7 +75,6 @@ function findSpotForCol(x) {
 /** placeInTable: update DOM to place piece into HTML table of board */
 
 function placeInTable(y, x) {
-  // TODO: make a div and insert into correct table cell
   const piece = document.createElement('div')
   piece.classList.add('piece')
   piece.classList.add(`player${currPlayer}`)
@@ -89,12 +85,7 @@ function placeInTable(y, x) {
 /** endGame: announce game end */
 
 function endGame(msg) {
-  // pop up alert message
-  // I tried to do a setTimeout for the alert, 
-  //because the piece the DOM wouldn't update, before the alert
-  // -- As a user, I want to see the piece "drop" before announcing the winner
-  // ---- I could not figure out how to do it. 
-  // ---- -> I tried setTimeout() in a few different places
+
   alert(msg)
 }
 
@@ -121,7 +112,6 @@ function handleClick(evt) {
   }
 
   // check for tie
-  // TODO: check if all cells in board are filled; if so call, call endGame
   // need to check every row in board > every cell in row > cell needs to be defined
   if (board.every(row=>row.every(cell=>cell=cell))){
     endGame("TIE")
@@ -139,10 +129,6 @@ function checkForWin() {
     // Check four cells to see if they're all color of current player
     //  - cells: list of four (y, x) cells
     //  - returns true if all are legal coordinates & all match currPlayer
-    // VV
-    // I don't think this checks color; 
-    // It checks if cells, in a given coordinate are all = 1 or 2
-    // then if it matches currPlayer(1/2)
 
     return cells.every(
       ([y, x]) =>
@@ -153,8 +139,6 @@ function checkForWin() {
         board[y][x] === currPlayer
     );
   }
-
-  // TODO: read and understand this code. Add comments to help you.
 
   for (let y = 0; y < HEIGHT; y++) {
     for (let x = 0; x < WIDTH; x++) {
